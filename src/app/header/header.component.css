@@ -1,0 +1,38 @@
+.navbar-default{
+  background: white;
+  box-shadow: 1px 1px 8px 2px rgba(96, 83, 127, 0.553);
+  border: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+}
+
+.navbar-brand{
+  color: dodgerblue;
+  font-weight: bold;
+}
+
+.logo{
+  font-size: 2.8rem;
+  font-family:Tahoma, 'sans-serif', Geneva, Verdana, sans-serif
+}
+
+.book-icon{
+  font-size: 2.325rem;
+}
+
+.icon{
+  margin-right: 0.1rem;
+}
+
+@media only screen and (max-width: 770px) {
+  .logo{
+    font-size: 1.9rem;
+    font-family:Tahoma, 'sans-serif', Geneva, Verdana, sans-serif
+  }
+
+  .book-icon{
+    font-size: 1.7rem;
+  }
+
+  
+}

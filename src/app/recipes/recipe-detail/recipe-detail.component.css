@@ -1,0 +1,18 @@
+.icon{
+  margin-right: 0.5rem;
+}
+
+.description{
+  margin-bottom: 0.2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.recipe-title{
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.dropdown-menu-container{
+  margin-top: 1rem;
+}

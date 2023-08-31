@@ -1,0 +1,56 @@
+.bold{
+  font-weight: bold;
+}
+
+.ingredients{
+  margin-top: 0.3rem;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+.form-validation-success{
+  border: 1px solid green;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background: rgba(96, 255, 133, 0.183);
+}
+
+.form-validation-error{
+  border: 1px solid red;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background: rgba(255, 96, 96, 0.183);
+
+}
+
+.icon{
+  margin-right: 0.3rem;
+}
+
+.form-actions{
+  display: flex;
+  gap: 0.4rem;
+}
+
+.form-group{
+  margin: 0.5rem 0;
+}
+
+.form-group label{
+  margin-bottom: 0;
+}
+
+.form-group.imagePath{
+  margin-top: 0;
+}
+
+.image img{
+  padding-left: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+.btn.add-ingredient{
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand  logo"><span class="glyphicon glyphicon-book icon book-icon"></span>RecipeBook</a>
+    </div>
+
+    <div class="">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/recipes"><span class="icon glyphicon glyphicon-bookmark"></span>Recipes</a></li>
+        <li routerLinkActive="active"><a routerLink="/shopping-list"><span class="icon glyphicon glyphicon-list-alt"></span>Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown>
+          <a class="dropdown-toggle icon glyphicon glyphicon-floppy-disk" role="button">Manage<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class=".navbar-text" style="cursor: pointer;" (click)="onSaveData()"><span class="icon glyphicon glyphicon-cloud-upload"></span><span class=".navbar-text">Save Recipes</span></a></li>
+            <li><a class=".navbar-text" style="cursor: pointer;" (click)="onFetchData()"><span class="icon glyphicon glyphicon-cloud-download"></span>Fetch Recipes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

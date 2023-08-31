@@ -1,0 +1,19 @@
+.recipe-info-container{
+/*   background: rgba(255, 158, 105, 0.096);
+  padding: 1rem; */
+  border-radius: 0.4rem;
+  border: 1px solid rgba(192, 192, 192, 0.463);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.recipe-heading{
+  font-weight: bold;
+}
+
+.recipe-list{
+  margin-bottom: 1rem;
+}
