@@ -54,3 +54,7 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
 .btn.add-ingredient{
   margin: 0.5rem 0;
 }
+
+.container{
+  width: 100%;
+}

@@ -4,13 +4,14 @@ import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
+  noDuplicateIngredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
 
   // private ingredients: Ingredient[] = [
   //   new Ingredient('Apples', 5),
   //   new Ingredient('Tomatoes', 10),
   // ];
-  private ingredients: Ingredient[] = [];
+  private ingredients: Ingredient[] = []; // For recipes
 
   getIngredients() {
     return this.ingredients.slice();
@@ -41,7 +42,6 @@ export class ShoppingListService {
   }
 
   notifyIngredientsChanged(){
-    this.ingredientsChanged.next(this.ingredients.slice());
+    this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
   }
-
 }

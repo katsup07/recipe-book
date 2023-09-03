@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row container">
   <div class="col-xs-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class='col-xs-12'>
-          <p class="form-validation-success" *ngIf="!recipeForm.invalid"><span class="bold">Status:</span> Ready to be saved.</p>
-          <p class="form-validation-error" *ngIf="recipeForm.invalid"><span class="bold">Status:</span> All fields must be filled with text or numbers greater than 0.</p>
+          <p class="form-validation-success" *ngIf="!recipeForm.invalid"><span class="glyphicon glyphicon-floppy-saved"></span> - Ready to be saved.</p>
+          <p class="form-validation-error" *ngIf="recipeForm.invalid"><span class="glyphicon glyphicon-floppy-remove"></span> - All fields must be filled with text or numbers greater than 0.</p>
           <div class="form-actions">
-            <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+            <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid"><span class="glyphicon glyphicon-floppy-disk"></span> Save </button>
             <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
           </div>
         </div>

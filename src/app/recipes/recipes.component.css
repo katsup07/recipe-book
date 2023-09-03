@@ -3,15 +3,17 @@
   padding: 1rem; */
   border-radius: 0.4rem;
   border: 1px solid rgba(192, 192, 192, 0.463);
-  display: flex;
+ /*  display: flex;
+  flex-shrink: ;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   margin-bottom: 1rem;
 }
 
 .recipe-heading{
   font-weight: bold;
+  text-align: center;
 }
 
 .recipe-list{
