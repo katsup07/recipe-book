@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseURL: 'https://ng-recipes-9fbf3-default-rtdb.asia-southeast1.firebasedatabase.app/'
 };
 
 /*
