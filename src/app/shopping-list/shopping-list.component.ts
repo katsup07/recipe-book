@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
+import { DataStorageService } from './../shared/data-storage.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private igChangeSub: Subscription;
 
-  constructor(private slService: ShoppingListService) {
+  constructor(private slService: ShoppingListService, private dataStorageService: DataStorageService) {
   }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       .subscribe(
         (ingredients: Ingredient[]) => {
           this.ingredients = ingredients;
+          // this.dataStorageService.storeShoppingList(); // store in db upon change
         }
       );
   }
@@ -33,6 +35,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   onEditItem(index: number){
     this.slService.startedEditing.next(index);
+  }
+
+  onLoadShoppingList(){
+     this.dataStorageService.fetchShoppingList().subscribe(ingredients => this.ingredients = [...this.ingredients, ...ingredients]);
+  }
+
+  onSaveShoppingList(){
+    this.dataStorageService.storeShoppingList();
   }
 }
  // // == No Duplicate Functions ==

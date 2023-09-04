@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-xs-10">
+    <div class="button-actions">
+      <button type="button" class="btn btn-default" (click)="onSaveShoppingList()"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
+      <button type="button" class="btn btn-default" (click)="onLoadShoppingList()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button>
+    </div>
     <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">

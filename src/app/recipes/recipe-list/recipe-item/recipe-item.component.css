@@ -1,3 +1,7 @@
 .list-group{
     margin-top: 0.5rem;
 }
+
+#item-name{
+ font-weight: 600;
+}

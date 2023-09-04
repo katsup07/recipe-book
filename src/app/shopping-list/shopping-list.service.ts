@@ -1,6 +1,7 @@
 import { Subject } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
+import { DataStorageService } from '../shared/data-storage.service';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
@@ -12,6 +13,10 @@ export class ShoppingListService {
   //   new Ingredient('Tomatoes', 10),
   // ];
   private ingredients: Ingredient[] = []; // For recipes
+  
+  setIngredients(ingredients: Ingredient[]){
+    this.ingredients = ingredients;
+  }
 
   getIngredients() {
     return this.ingredients.slice();
