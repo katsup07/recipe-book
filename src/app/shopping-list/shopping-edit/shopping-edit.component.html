@@ -26,7 +26,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12 actions-buttons">
-          <!-- Add will submit form, since only button of type='submit' -->
+          <!-- Add will submit form, since only button of type='submit'-->
           <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update Ingredient' : 'Add Ingredient' }}</button> 
           <button class="btn btn-primary" type="button" (click)="onClear()">Clear Form</button>
           <button class="btn btn-danger" type="button" (click)="onDelete()" [disabled]="!f.valid"><span class="glyphicon glyphicon-trash"></span></button>
