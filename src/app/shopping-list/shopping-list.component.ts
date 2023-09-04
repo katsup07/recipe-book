@@ -44,6 +44,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   onSaveShoppingList(){
     this.dataStorageService.storeShoppingList();
   }
+
+  onClearList(){
+    this.ingredients = [];
+  }
 }
  // // == No Duplicate Functions ==
   //  // For shopping list to ensure duplicate ingredients do not appear
