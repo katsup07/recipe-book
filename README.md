@@ -1,7 +1,7 @@
 # Recipe Book
 
  Create your own recipe collection, edit exiting recipes, add new recipes, delete recipes, add ingredients, send ingredients to a shopping list. Save and fetch an existing shopping list.
- The site is live [here](https://recipes-ten-vert.vercel.app/shopping-list).
+ The site is live [here](https://recipes-ten-vert.vercel.app/).
 
  # Features
  
