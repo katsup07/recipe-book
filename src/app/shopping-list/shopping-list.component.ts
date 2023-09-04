@@ -46,7 +46,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   onClearList(){
-    this.ingredients = [];
+    this.slService.clearIngredients();
   }
 }
  // // == No Duplicate Functions ==

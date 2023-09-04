@@ -1,11 +1,9 @@
 import { Subject } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
-import { DataStorageService } from '../shared/data-storage.service';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
-  noDuplicateIngredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
 
   // private ingredients: Ingredient[] = [
@@ -46,7 +44,13 @@ export class ShoppingListService {
     this.notifyIngredientsChanged();
   }
 
+  clearIngredients(){
+    this.ingredients = [];
+    this.notifyIngredientsChanged();
+  }
+
   notifyIngredientsChanged(){
     this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
   }
+
 }
