@@ -28,16 +28,23 @@ export class DataStorageService {
       )
     }
 
-    storeShoppingList(){
-      const allIngredients = this.slService.getIngredients();
+    storeShoppingList(errorHandler: (message: string) => void){
+      let allIngredients = this.slService.getIngredients();
+      console.log('allIngredients: ', allIngredients);
       this.http.put(environment.firebaseURL + 'shopping-list.json', allIngredients)
-        .subscribe();
+        .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
     }
 
     fetchShoppingList(){
       return this.http.get<Ingredient[]>(environment.firebaseURL + 'shopping-list.json').pipe( tap(dbIngredients =>  {
         const localIngredients = this.slService.getIngredients();
-        const allIngredients = [...localIngredients, ...dbIngredients]
+        let allIngredients = [];
+
+        if(dbIngredients === null)
+          allIngredients = [...localIngredients];
+        else
+          allIngredients = [...localIngredients, ...dbIngredients];
+
         this.slService.setIngredients(allIngredients);
     }))
     }
