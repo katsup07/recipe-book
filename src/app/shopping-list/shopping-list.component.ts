@@ -5,7 +5,6 @@ import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { DataStorageService } from './../shared/data-storage.service';
 
-
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -13,6 +12,8 @@ import { DataStorageService } from './../shared/data-storage.service';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
+  isError: boolean = false;
+  alert: {isCallingApi: boolean; message: string} = { isCallingApi: false, message: ''};
   private igChangeSub: Subscription;
 
   constructor(private slService: ShoppingListService, private dataStorageService: DataStorageService) {
@@ -38,15 +39,41 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   onLoadShoppingList(){
-     this.dataStorageService.fetchShoppingList().subscribe(ingredients => this.ingredients = [...this.ingredients, ...ingredients]);
+    this.alert = { isCallingApi: true, message: 'Appending previously saved ingredients to list...'};
+     this.dataStorageService.fetchShoppingList().subscribe(ingredients => {
+      if(ingredients)
+        this.ingredients = [...this.ingredients, ...ingredients];
+    
+      setTimeout(() => {
+        this.onSetAlertToDefault();
+      }, 2000);
+     }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText)
+      );
   }
 
   onSaveShoppingList(){
-    this.dataStorageService.storeShoppingList();
+    this.alert = { isCallingApi: true, message: 'Saving shopping list...'};
+    this.dataStorageService.storeShoppingList(this.handleError.bind(this));
+    setTimeout(() => {
+      this.onSetAlertToDefault()
+    }, 2000);
   }
 
   onClearList(){
     this.slService.clearIngredients();
+  }
+
+  onSetAlertToDefault(){
+    this.alert = { isCallingApi: false, message: ''};
+  }
+
+  onCloseAlert(){
+    this.onSetAlertToDefault();
+  }
+
+  handleError(message?: string){
+    this.isError = true;
+    this.alert = { isCallingApi: true, message };
   }
 }
  // // == No Duplicate Functions ==

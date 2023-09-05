@@ -1,4 +1,47 @@
+.form-and-shopping-list{
+  margin: 2rem auto;
+  display: flex;
+}
+
 .button-actions{
   display: flex;
   gap: 1rem;
+}
+
+.alert-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+}
+.alert{
+  position: absolute;
+  box-shadow: 3px 4px 8px 4px rgb(202, 202, 202);
+  min-width: 30vh;
+  text-align: center;
+}
+
+.main-heading{
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  margin-left: 1.4rem;
+}
+
+.empty-list-message{
+  font-style: italic;
+  font-size: 0.7rem;
+  color: dodgerblue;
+  text-align: center;
+  border: 1px dashed dodgerblue;
+}
+
+.close-alert{
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .row{
+    display: block;
+  }
 }

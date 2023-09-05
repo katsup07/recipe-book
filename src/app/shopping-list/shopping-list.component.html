@@ -1,21 +1,32 @@
-<div class="row">
-  <div class="col-xs-10">
-    <div class="button-actions">
-      <button type="button" class="btn btn-default" (click)="onSaveShoppingList()"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
-      <button type="button" class="btn btn-default" (click)="onLoadShoppingList()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button>
-      <button class="btn btn-danger" type="button" (click)="onClearList()"><span class="glyphicon glyphicon-erase"></span>Clear List</button>
+<div class="container">
+
+  <div class="alert-container">
+    <div class="alert alert-info" role="alert" *ngIf="alert.isCallingApi">{{ alert.message }}<button type="button" class="btn btn-danger close-alert" (click)="onCloseAlert()">x</button></div>
+  </div>
+
+  <div class="row form-and-shopping-list">
+    <div class="col-md-12">
+      <div class="button-actions">
+        <button type="button" class="btn btn-default" (click)="onSaveShoppingList()"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
+        <button type="button" class="btn btn-default" (click)="onLoadShoppingList()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button>
+        <button class="btn btn-danger" type="button" (click)="onClearList()"><span class="glyphicon glyphicon-erase"></span>Clear List</button>
+      </div>
+      <app-shopping-edit></app-shopping-edit>
+      <hr>
     </div>
-    <app-shopping-edit></app-shopping-edit>
-    <hr>
-    <ul class="list-group">
-      <a
-        class="list-group-item"
-        style="cursor: pointer"
-        *ngFor="let ingredient of ingredients; let i = index"
-        (click)="onEditItem(i)"
-      >
-        {{ ingredient.name }} ({{ ingredient.amount }})
-      </a>
-    </ul>
+    <div class="col-md-10">
+      <h1 class="main-heading">Shopping List</h1>
+      <ul class="list-group">
+        <a
+          class="list-group-item"
+          style="cursor: pointer"
+          *ngFor="let ingredient of ingredients; let i = index"
+          (click)="onEditItem(i)"
+        >
+          {{ ingredient.name }} ({{ ingredient.amount }})
+        </a>
+        <ul class="empty-list-message list-group" *ngIf="ingredients.length === 0"><p class="list-group-item">No items in shopping list. How about you add one?</p></ul>
+      </ul>
+    </div>
   </div>
 </div>
