@@ -1,4 +1,29 @@
-# FirstApp
+# Recipe Book
+
+ Create your own recipe collection, edit exiting recipes, add new recipes, delete recipes, add ingredients, send ingredients to a shopping list. Save and fetch an existing shopping list.
+ The site is live [here](https://recipes-ten-vert.vercel.app/).
+
+ # Features
+ 
+ Manage existing recipes.
+![FirstApp](https://github.com/katsup07/recipe-book/assets/90941888/ce34c165-ed8c-40c9-992e-3e2b991e2093)
+<br>
+<br>
+Update and save recipes.
+![FirstApp (1)](https://github.com/katsup07/recipe-book/assets/90941888/688c7ce2-3e35-4e77-832b-8cfc62c27650)
+<br>
+<br>
+Add and edit ingredients in recipes.
+![FirstApp (2)](https://github.com/katsup07/recipe-book/assets/90941888/ad17fdc7-0e2e-4780-b254-c1973a6e78e9)
+<br>
+<br>
+Send ingredients to a shopping list.
+![FirstApp (3)](https://github.com/katsup07/recipe-book/assets/90941888/1a29e29c-52e9-405c-852f-9e26f9348c27)
+![FirstApp (4)](https://github.com/katsup07/recipe-book/assets/90941888/2bf52c1b-6e5c-4472-8186-9920c6167279)
+<br>
+<br>
+Manage shopping list - add ingredients, update ingredients, delete ingredients, save shopping lists, and fetch an existing shopping list.
+![FirstApp (5)](https://github.com/katsup07/recipe-book/assets/90941888/04de6f84-63de-4c06-a4a6-172539115bef)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
