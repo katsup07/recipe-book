@@ -52,9 +52,13 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   onDelete(){
-    if(!confirm("Are you sure you want to delete this ingredient?"))
-      return;
-
+    // No item selected in list
+    if(!this.editedItem)
+     return alert('Item not found in shopping list. Click item in list first and then delete.');
+    // Item selected in list
+    if(!confirm(`Are you sure you want to delete "${this.editedItem.name} - ${this.editedItem.amount}"?`))
+        return;
+  
     this.slService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
@@ -62,6 +66,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   onClear(){
     this.slForm.reset();
     this.editMode = false;
+    this.editedItem = null;
+    this.editedItemIndex = null;
   }
 
 }
