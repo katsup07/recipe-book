@@ -40,6 +40,14 @@
   margin-left: 1rem;
 }
 
+.heading-icon{
+  color: grey;
+}
+.sub-icon{
+  color: green;
+}
+
+
 @media only screen and (max-width: 800px) {
   .row{
     display: block;

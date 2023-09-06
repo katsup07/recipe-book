@@ -15,7 +15,7 @@
       <hr>
     </div>
     <div class="col-md-10">
-      <h1 class="main-heading">Shopping List</h1>
+      <h1 class="main-heading">Shopping List <span class="glyphicon glyphicon-shopping-cart heading-icon"></span></h1>
       <ul class="list-group">
         <a
           class="list-group-item"
@@ -23,7 +23,7 @@
           *ngFor="let ingredient of ingredients; let i = index"
           (click)="onEditItem(i)"
         >
-          {{ ingredient.name }} ({{ ingredient.amount }})
+          <span class="glyphicon glyphicon-grain sub-icon"></span> {{ ingredient.name }} - {{ ingredient.amount }}
         </a>
         <ul class="empty-list-message list-group" *ngIf="ingredients.length === 0"><p class="list-group-item">No items in shopping list. How about you add one?</p></ul>
       </ul>
