@@ -21,7 +21,14 @@
   text-align: center;
 }
 
-.main-heading{
+.main-heading-1{
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: left;
+  margin-left: 1.4rem;
+}
+
+.main-heading-2{
   font-weight: bold;
   font-size: 3rem;
   text-align: center;
