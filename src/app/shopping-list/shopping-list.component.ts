@@ -39,7 +39,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   onLoadShoppingList(){
-    this.alert = { isCallingApi: true, message: 'Appending previously saved ingredients to list...'};
+    this.alert = { isCallingApi: true, message: 'Appending previously saved ingredients...'};
      this.dataStorageService.fetchShoppingList().subscribe(ingredients => {
       if(ingredients)
         this.ingredients = [...this.ingredients, ...ingredients];

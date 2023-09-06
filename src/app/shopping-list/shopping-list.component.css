@@ -19,6 +19,9 @@
   box-shadow: 3px 4px 8px 4px rgb(202, 202, 202);
   min-width: 30vh;
   text-align: center;
+  border: 1px solid rgb(208, 208, 208);
+  font-weight: 500;
+  font-style: italic;
 }
 
 .main-heading-1{
