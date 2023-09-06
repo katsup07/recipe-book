@@ -60,6 +60,9 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   onClearList(){
+    if(!confirm("Are you sure you want to clear the form?"))
+    return;
+  
     this.slService.clearIngredients();
   }
 
