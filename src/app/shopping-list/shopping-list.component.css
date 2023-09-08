@@ -59,6 +59,11 @@
   color: green;
 }
 
+.instructions{
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
 
 @media only screen and (max-width: 800px) {
   .row{
