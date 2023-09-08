@@ -13,9 +13,17 @@
 
 .recipe-heading{
   font-weight: bold;
-  text-align: center;
+  text-align: left;
 }
 
 .recipe-list{
   margin-bottom: 1rem;
 }
+
+.main-heading-icon{
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  font-size: 2.7rem;
+  color: grey;
+}
+

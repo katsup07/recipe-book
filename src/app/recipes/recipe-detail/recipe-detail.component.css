@@ -1,5 +1,19 @@
 .icon{
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.ingredient-icon{
+  color: green;
+  margin-right: 0.1em;
+}
+
+.ingredients-heading-icon{
+  margin-right: 0.1rem;
+  font-size: 1.8rem;
+}
+
+.cog-icon{
+  font-size: 0.7rem;
 }
 
 .description{
