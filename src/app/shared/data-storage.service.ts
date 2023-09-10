@@ -6,6 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Ingredient } from "./ingredient.model";
 import { environment } from "src/environments/environment";
+import { ShoppingList, FirebaseShoppingLists } from "../interfaces/shoppingLists";
 
 
 @Injectable({providedIn: 'root'})
@@ -28,13 +29,8 @@ export class DataStorageService {
       )
     }
 
-    storeShoppingList(errorHandler: (message: string) => void){
-      let allIngredients = this.slService.getIngredients();
-      console.log('allIngredients: ', allIngredients);
-      this.http.put(environment.firebaseURL + 'shopping-list.json', allIngredients)
-        .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
-    }
-
+    
+    // Single List
     fetchShoppingList(){
       return this.http.get<Ingredient[]>(environment.firebaseURL + 'shopping-list.json').pipe( tap(dbIngredients =>  {
         const localIngredients = this.slService.getIngredients();
@@ -48,6 +44,36 @@ export class DataStorageService {
         this.slService.setIngredients(allIngredients);
     }))
     }
-  
 
+    storeShoppingList(errorHandler: (message: string) => void){
+      let allIngredients = this.slService.getIngredients();
+      console.log('allIngredients: ', allIngredients);
+      this.http.put(environment.firebaseURL + 'shopping-lists.json', allIngredients)
+        .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
+    }
+
+    // Multiple Lists
+    fetchShoppingLists(){
+      return this.http.get<FirebaseShoppingLists>(environment.firebaseURL + 'shopping-lists.json').pipe( tap(allLists =>  {
+
+        const shoppingLists: ShoppingList[] = []
+        for(const list in allLists)
+          shoppingLists.push({ id: list, ingredients: allLists[list] });
+        console.log(shoppingLists);
+        this.slService.setShoppinglists(shoppingLists)
+    }))
+    }
+
+    storeShoppingLists(name: string, errorHandler: (message: string) => void){
+      const listName = this.makeIntoCababCase(name);
+      let allIngredients = this.slService.getIngredients();
+      console.log('allIngredients: ', allIngredients);
+      this.http.put(environment.firebaseURL + 'shopping-lists/' + listName + '.json', allIngredients)
+        .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
+    }
+  
+    // Helpers
+    makeIntoCababCase(s: string){
+      return s.split(' ').join('-');
+    }
 }
