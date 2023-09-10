@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { DataStorageService } from './../shared/data-storage.service';
+import { NgForm } from '@angular/forms';
+import { ShoppingList } from '../interfaces/shoppingLists';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,6 +13,11 @@ import { DataStorageService } from './../shared/data-storage.service';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
+  shoppingLists: ShoppingList[];
+  shoppingListName: string;
+  shoppingListSaverIsOpen = false;
+  @ViewChild('f') listNameForm: NgForm;
+
   ingredients: Ingredient[];
   isError: boolean = false;
   alert: {isCallingApi: boolean; message: string} = { isCallingApi: false, message: ''};
@@ -28,6 +35,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
           // this.dataStorageService.storeShoppingList(); // store in db upon change
         }
       );
+      this.dataStorageService.fetchShoppingLists().subscribe( shoppingLists => {
+        this.shoppingLists =  this.slService.getShoppingLists();
+        console.log(this.shoppingLists);
+      });
   }
 
   ngOnDestroy(): void {
@@ -40,9 +51,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   onLoadShoppingList(){
     this.alert = { isCallingApi: true, message: 'Appending previously saved ingredients...'};
-     this.dataStorageService.fetchShoppingList().subscribe(ingredients => {
-      if(ingredients)
-        this.ingredients = [...this.ingredients, ...ingredients];
+     this.dataStorageService.fetchShoppingLists().subscribe(ingredients => {
+      console.log(ingredients);
+      // if(ingredients)
+      //   this.ingredients = [...this.ingredients, ...ingredients];
     
       setTimeout(() => {
         this.onSetAlertToDefault();
@@ -51,12 +63,18 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       );
   }
 
-  onSaveShoppingList(){
+  onSaveShoppingList(form: NgForm){
+    const name = form.value.listName;
     this.alert = { isCallingApi: true, message: 'Saving shopping list...'};
-    this.dataStorageService.storeShoppingList(this.handleError.bind(this));
+    this.dataStorageService.storeShoppingLists(name, this.handleError.bind(this));
     setTimeout(() => {
       this.onSetAlertToDefault()
     }, 2000);
+  }
+
+  toggleShoppingListSaverVisibility(){
+    console.log('Toggling visibility...');
+    this.shoppingListSaverIsOpen = !this.shoppingListSaverIsOpen;
   }
 
   onClearList(){
