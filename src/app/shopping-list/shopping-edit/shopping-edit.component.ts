@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -21,6 +22,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   editedItemIndex: number;
   editedItem: Ingredient;
   @ViewChild('f') slForm: NgForm;
+  @Input() shoppingListSaverIsOpen: boolean;
 
 
   constructor(private slService: ShoppingListService) { }
