@@ -90,6 +90,14 @@
   align-items: center;
 }
 
+.shopping-list-name-save-confirm{
+  margin: 0.3rem 0 0.5rem 0;
+}
+
+.shopping-list-name-save-cancel{
+  margin: 0.3rem 0 0.5rem 0.5rem;
+}
+
 .delete-list-btn{
   padding: 0.2rem;
   display: flex;
