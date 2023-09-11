@@ -6,3 +6,16 @@
 .container{
   border-right: 1px solid black;
 }
+
+.main-heading-1{
+  font-weight: bold;
+  font-size: 2.7rem;
+  text-align: left;
+  margin-left: 1.4rem;
+}
+
+.heading-icon{
+  color: grey;
+  font-size: 2.25rem;
+}
+
