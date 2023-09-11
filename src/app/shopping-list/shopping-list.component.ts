@@ -5,7 +5,7 @@ import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { DataStorageService } from './../shared/data-storage.service';
 import { NgForm } from '@angular/forms';
-import { ShoppingList } from '../interfaces/shoppingLists';
+import { FirebaseShoppingLists, ShoppingList } from '../interfaces/shoppingLists';
 
 @Component({
   selector: 'app-shopping-list',
@@ -35,14 +35,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
           // this.dataStorageService.storeShoppingList(); // store in db upon change
         }
       );
-      this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
-          const shoppingLists: ShoppingList[] = [];
-            for(const key in dbShoppingLists)
-              shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
-    
-          console.log('allLists: ', shoppingLists);
-          this.shoppingLists =  shoppingLists;
-      }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
+     this.setShoppingList()
   }
 
   ngOnDestroy(): void {
@@ -60,23 +53,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.ingredients = ingredients;
     this.slService.setIngredients(ingredients);
   }
-
-  // old implementation
- /*  onLoadShoppingLists(){
-    this.alert = { isCallingApi: true, message: 'Loading all lists..'};
-     this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
-      const shoppingLists: ShoppingList[] = [];
-        for(const key in dbShoppingLists)
-          shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
-
-      console.log('allLists: ', shoppingLists);
-      this.shoppingLists =  shoppingLists;
-
-      setTimeout(() => {
-        this.onSetAlertToDefault()
-      }, 2000);
-  }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
-  } */
 
   onSaveShoppingList(form: NgForm){
     const name = form.value.listName;
@@ -100,11 +76,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.slService.clearIngredients();
   }
 
-  onDeleteList(){
+  onDeleteList(id: string | number){
     if(!confirm("Are you sure you want to delete this list?"))
       return;
 
-      console.log("About to delete list... deletion logic not implemented yet.")
+    this.dataStorageService.deleteShoppingList(id, this.handleError);
+    this.setShoppingList();
   }
 
   onSetAlertToDefault(){
@@ -127,6 +104,21 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   //helpers
   private getShoppingListById(id: string|number){
     return this.shoppingLists.find(list => list.id === id);
+  }
+
+  private convertDbShoppingListToShoppingList(dbShoppingLists: FirebaseShoppingLists){
+    const shoppingLists: ShoppingList[] = [];
+    for(const key in dbShoppingLists)
+      shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
+
+    console.log('allLists: ', shoppingLists);
+    return shoppingLists;
+  }
+
+  private setShoppingList(){
+    this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
+      this.shoppingLists =  this.convertDbShoppingListToShoppingList(dbShoppingLists);
+  }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
   }
 }
  // // == No Duplicate Functions ==
@@ -160,6 +152,23 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   // notifyNoDuplicateIngredientsChanged(){
   //   this.noDuplicateIngredientsChanged.next(this.noDuplicateIngredients.slice());
   // }
+
+  // old implementation
+ /*  onLoadShoppingLists(){
+    this.alert = { isCallingApi: true, message: 'Loading all lists..'};
+     this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
+      const shoppingLists: ShoppingList[] = [];
+        for(const key in dbShoppingLists)
+          shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
+
+      console.log('allLists: ', shoppingLists);
+      this.shoppingLists =  shoppingLists;
+
+      setTimeout(() => {
+        this.onSetAlertToDefault()
+      }, 2000);
+  }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
+  } */
 
 
 
