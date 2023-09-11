@@ -69,9 +69,11 @@
             name="listName"
             placeholder="Enter shopping list name"
             required
+            minlength="3"
             ngModel
           />
-          <button class="btn btn-default" type="submit">Save</button>
+          <button class="btn btn-default shopping-list-name-save-confirm" type="submit" [disabled]="!f.valid"><span class="glyphicon glyphicon-cloud-upload"></span>Save</button>
+          <button class="btn btn-danger shopping-list-name-save-cancel" type="button" (click)="toggleShoppingListSaverVisibility()">Cancel</button>
         </form>
       </div>
 
@@ -82,7 +84,7 @@
           (click)="toggleShoppingListSaverVisibility()"
           [disabled]="shoppingListSaverIsOpen"
         >
-          <span class="glyphicon glyphicon-cloud-upload"></span>Save List
+          <span class="glyphicon glyphicon-pencil"></span> Write List Name
         </button>
         <!-- <button type="button" class="btn btn-default" (click)="onLoadShoppingLists()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button> -->
         <button class="btn btn-danger" type="button" (click)="onClearList()">
@@ -90,7 +92,7 @@
         </button>
       </div>
       <hr />
-      <app-shopping-edit></app-shopping-edit>
+      <app-shopping-edit [shoppingListSaverIsOpen]=" shoppingListSaverIsOpen"></app-shopping-edit>
       <hr />
       <p>
         <span class="instructions"
@@ -118,7 +120,7 @@
           *ngIf="ingredients.length === 0"
         >
           <p class="list-group-item">
-            No items in shopping list. How about you add one?
+            No items in shopping list. How about you add one or select a list from the lists folder?
           </p>
         </ul>
       </ul>
