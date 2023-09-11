@@ -1,4 +1,7 @@
 <div class="row">
+  <h1 class="main-heading-1">
+    <span class="glyphicon glyphicon-plus heading-icon"></span>Add Ingredients to List
+  </h1>
   <div class="col-xs-12">
     <form (ngSubmit)="onAddOrEditItem(f)" #f="ngForm">
       <div class="row">
@@ -27,9 +30,9 @@
       <div class="row">
         <div class="col-xs-12 actions-buttons">
           <!-- Add will submit form, since only button of type='submit'-->
-          <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add' }}</button> 
-          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
-          <button class="btn btn-danger" type="button" (click)="onDelete()" [disabled]="!f.valid"><span class="glyphicon glyphicon-trash"></span></button>
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid || shoppingListSaverIsOpen">{{ editMode ? 'Update' : 'Add' }}</button> 
+          <button class="btn btn-primary" type="button" (click)="onClear()" [disabled]="shoppingListSaverIsOpen">Clear</button>
+          <button class="btn btn-danger" type="button" (click)="onDelete()" [disabled]="!f.valid || shoppingListSaverIsOpen"><span class="glyphicon glyphicon-trash"></span></button>
         </div>
       </div>
     </form>
