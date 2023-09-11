@@ -64,6 +64,21 @@
   font-size: 0.8rem;
 }
 
+.dropdown-toggle{
+  padding: 0.2rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.shopping-list-dropdown{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 0.5rem;
+}
+
+.shopping-list-dropdown li{
+  font-size: 0.7rem;
+}
 
 @media only screen and (max-width: 800px) {
   .row{

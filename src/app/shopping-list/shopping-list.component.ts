@@ -13,12 +13,11 @@ import { ShoppingList } from '../interfaces/shoppingLists';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
+  @ViewChild('f') listNameForm: NgForm;
   shoppingLists: ShoppingList[];
   shoppingListId: string = '';
-  shoppingListName: string;
   shoppingListSaverIsOpen = false;
-  @ViewChild('f') listNameForm: NgForm;
-
+  showDropdown = false;
   ingredients: Ingredient[] = [];
   isError: boolean = false;
   alert: {isCallingApi: boolean; message: string} = { isCallingApi: false, message: ''};
@@ -56,15 +55,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   // new implementation
   onLoadList(shoppingListId: number|string){
-    this.alert = { isCallingApi: true, message: 'Loading list...'};
     const { id, ingredients } = this.getShoppingListById(shoppingListId);
     this.shoppingListId = id;
     this.ingredients = ingredients;
     this.slService.setIngredients(ingredients);
-    
-    setTimeout(() => {
-      this.onSetAlertToDefault();
-    }, 2000);
   }
 
   // old implementation
@@ -116,6 +110,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   handleError(message?: string){
     this.isError = true;
     this.alert = { isCallingApi: true, message };
+  }
+
+  toggleListDropdown(){
+    this.showDropdown = !this.showDropdown;
   }
 
   //helpers

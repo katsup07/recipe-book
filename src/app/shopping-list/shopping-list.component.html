@@ -11,14 +11,14 @@
     </form>
   </div>
 
-  <div class="shopping-lists-viewer">
+<!--   <div class="shopping-lists-viewer">
     <h2>Saved Lists</h2>
     <div style="cursor: pointer">
       <ul class="list-group">
-        <a class="list-group-item" [style]="shoppingListId === list.id ? 'background: dodgerblue; color: white' : ''" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
+        <a class="list-group-item" [style]="shoppingListId === list.id ? 'background: dodgerblue; color: white; font-weight: bold' : ''" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
       </ul>
     </div>
-  </div>
+  </div> -->
 
   <div class="row form-and-shopping-list">
     <div class="col-md-12">
@@ -26,14 +26,11 @@
 
       <div class="shopping-lists-viewer">
         <h2>Saved Lists</h2>
-
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Lists<span class="caret"></span></button>
-          <div style="cursor: pointer">
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="list-group-item" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
-            </ul>
-          </div>
+          <button class="btn btn-default dropdown-toggle" type="button" (click)="toggleListDropdown()" >Saved Shopping Lists<span class="caret"></span></button>
+          <ul class="shopping-list-dropdown" *ngIf="showDropdown">
+              <li style="cursor: pointer"><a class="list-group-item" [style]="shoppingListId === list.id ? 'background: dodgerblue; color: white; font-weight: bold' : ''" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a></li>
+          </ul>
         </div>
         
       </div>
