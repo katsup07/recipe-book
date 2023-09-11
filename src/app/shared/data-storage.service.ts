@@ -56,7 +56,7 @@ export class DataStorageService {
     // Multiple Lists
     fetchShoppingLists(){
       return this.http.get<FirebaseShoppingLists>(environment.firebaseURL + 'shopping-lists.json').pipe( map(allLists =>  {
-        
+
         return allLists;
       }));
     }
@@ -68,6 +68,11 @@ export class DataStorageService {
       console.log('allIngredients: ', allIngredients);
       this.http.put(environment.firebaseURL + 'shopping-lists/' + listName + '.json', allIngredients)
         .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
+    }
+
+    deleteShoppingList(id: string | number, errorHandler: (message: string) => void){
+      this.http.delete(environment.firebaseURL + 'shopping-lists/' + id + '.json',)
+      .subscribe((res) => console.log(res), err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
     }
   
     // Helpers
