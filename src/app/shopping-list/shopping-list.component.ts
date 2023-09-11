@@ -84,6 +84,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.dataStorageService.storeShoppingLists(name, this.handleError.bind(this));
     setTimeout(() => {
       this.onSetAlertToDefault()
+      this.shoppingListSaverIsOpen = false;
     }, 2000);
   }
 
@@ -97,6 +98,13 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     return;
 
     this.slService.clearIngredients();
+  }
+
+  onDeleteList(){
+    if(!confirm("Are you sure you want to delete this list?"))
+      return;
+
+      console.log("About to delete list... deletion logic not implemented yet.")
   }
 
   onSetAlertToDefault(){

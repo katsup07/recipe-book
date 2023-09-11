@@ -1,17 +1,18 @@
 <div class="shopping-list-container">
-
   <div class="alert-container" *ngIf="alert.isCallingApi">
-    <div class="alert alert-info" role="alert">{{ alert.message }}<button type="button" class="btn btn-danger close-alert" (click)="onCloseAlert()">x</button></div>
+    <div class="alert alert-info" role="alert">
+      {{ alert.message
+      }}<button
+        type="button"
+        class="btn btn-danger close-alert"
+        (click)="onCloseAlert()"
+      >
+        x
+      </button>
+    </div>
   </div>
 
-  <div class="shopping-list-saver" *ngIf="shoppingListSaverIsOpen">
-    <form #f="ngForm" (ngSubmit)="onSaveShoppingList(f)">
-      <input class="form-control" type="text" name="listName" placeholder="Enter shopping list name" required ngModel>
-      <button class="btn btn-default" type="submit">Save</button>
-    </form>
-  </div>
-
-<!--   <div class="shopping-lists-viewer">
+  <!--   <div class="shopping-lists-viewer">
     <h2>Saved Lists</h2>
     <div style="cursor: pointer">
       <ul class="list-group">
@@ -22,32 +23,86 @@
 
   <div class="row form-and-shopping-list">
     <div class="col-md-12">
-      <h1 class="main-heading-1"><span class="glyphicon glyphicon-cog heading-icon"></span> Manage List</h1>
+      <h1 class="main-heading-1">
+        <span class="glyphicon glyphicon-cog heading-icon"></span> Manage Lists
+      </h1>
 
       <div class="shopping-lists-viewer">
-        <h2>Saved Lists</h2>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" (click)="toggleListDropdown()" >Saved Shopping Lists<span class="caret"></span></button>
+          <button
+            class="btn btn-default dropdown-toggle"
+            type="button"
+            (click)="toggleListDropdown()"
+          >
+            <span class="glyphicon glyphicon-folder-open lists-icon"></span>
+            Lists <span class="caret"></span>
+          </button>
           <ul class="shopping-list-dropdown" *ngIf="showDropdown">
-              <li style="cursor: pointer"><a class="list-group-item" [style]="shoppingListId === list.id ? 'background: dodgerblue; color: white; font-weight: bold' : ''" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a></li>
+            <li style="cursor: pointer">
+              <a
+                class="list-group-item"
+                [style]="
+                  shoppingListId === list.id
+                    ? 'background: dodgerblue; color: white; font-weight: bold'
+                    : ''
+                "
+                *ngFor="let list of shoppingLists"
+                (click)="onLoadList(list.id)"
+                >{{ list.id
+                }}<button
+                  type="button"
+                  class="btn bold btn-danger delete-list-btn"
+                  (click)="onDeleteList(list.id)"
+                >
+                  <span class="glyphicon glyphicon-remove"></span></button
+              ></a>
+            </li>
           </ul>
         </div>
-        
+      </div>
+
+      <div class="shopping-list-saver" *ngIf="shoppingListSaverIsOpen">
+        <form #f="ngForm" (ngSubmit)="onSaveShoppingList(f)">
+          <input
+            class="form-control"
+            type="text"
+            name="listName"
+            placeholder="Enter shopping list name"
+            required
+            ngModel
+          />
+          <button class="btn btn-default" type="submit">Save</button>
+        </form>
       </div>
 
       <div class="button-actions">
-        <button type="button" class="btn btn-default" (click)="toggleShoppingListSaverVisibility()" 
-        [disabled]="shoppingListSaverIsOpen"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
+        <button
+          type="button"
+          class="btn btn-default"
+          (click)="toggleShoppingListSaverVisibility()"
+          [disabled]="shoppingListSaverIsOpen"
+        >
+          <span class="glyphicon glyphicon-cloud-upload"></span>Save List
+        </button>
         <!-- <button type="button" class="btn btn-default" (click)="onLoadShoppingLists()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button> -->
-        <button class="btn btn-danger" type="button" (click)="onClearList()"><span class="glyphicon glyphicon-erase"></span>Clear List</button>
+        <button class="btn btn-danger" type="button" (click)="onClearList()">
+          <span class="glyphicon glyphicon-erase"></span>Clear List
+        </button>
       </div>
-      <hr>
+      <hr />
       <app-shopping-edit></app-shopping-edit>
-      <hr>
-      <p><span class="instructions">Click an item on the shopping list to edit or delete it.</span></p>
+      <hr />
+      <p>
+        <span class="instructions"
+          >Click an item on the shopping list to edit or delete it.</span
+        >
+      </p>
     </div>
     <div class="col-md-10">
-      <h1 class="main-heading-2"><span class="glyphicon glyphicon-shopping-cart heading-icon"></span> Shopping List</h1>
+      <h1 class="main-heading-2">
+        <span class="glyphicon glyphicon-shopping-cart heading-icon"></span>
+       {{ shoppingListId || 'Shopping List'}}
+      </h1>
       <ul class="list-group">
         <a
           class="list-group-item"
@@ -55,11 +110,18 @@
           *ngFor="let ingredient of ingredients; let i = index"
           (click)="onEditItem(i)"
         >
-          <span class="glyphicon glyphicon-grain sub-icon"></span>{{ ingredient.name }} - {{ ingredient.amount }}
+          <span class="glyphicon glyphicon-grain sub-icon"></span
+          >{{ ingredient.name }} - {{ ingredient.amount }}
         </a>
-        <ul class="empty-list-message list-group" *ngIf="ingredients.length === 0"><p class="list-group-item">No items in shopping list. How about you add one?</p></ul>
+        <ul
+          class="empty-list-message list-group"
+          *ngIf="ingredients.length === 0"
+        >
+          <p class="list-group-item">
+            No items in shopping list. How about you add one?
+          </p>
+        </ul>
       </ul>
     </div>
   </div>
-
 </div>
