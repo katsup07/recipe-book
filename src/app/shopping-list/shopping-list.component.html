@@ -1,4 +1,4 @@
-<div class="container">
+<div class="shopping-list-container">
 
   <div class="alert-container" *ngIf="alert.isCallingApi">
     <div class="alert alert-info" role="alert">{{ alert.message }}<button type="button" class="btn btn-danger close-alert" (click)="onCloseAlert()">x</button></div>
@@ -15,17 +15,33 @@
     <h2>Saved Lists</h2>
     <div style="cursor: pointer">
       <ul class="list-group">
-        <a class="list-group-item" *ngFor="let list of shoppingLists">hi {{ list.id }}</a>
+        <a class="list-group-item" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
       </ul>
     </div>
   </div>
+
   <div class="row form-and-shopping-list">
     <div class="col-md-12">
       <h1 class="main-heading-1"><span class="glyphicon glyphicon-cog heading-icon"></span> Manage List</h1>
+
+      <div class="shopping-lists-viewer">
+        <h2>Saved Lists</h2>
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Lists<span class="caret"></span></button>
+          <div style="cursor: pointer">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <a class="list-group-item" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+
       <div class="button-actions">
         <button type="button" class="btn btn-default" (click)="toggleShoppingListSaverVisibility()" 
         [disabled]="shoppingListSaverIsOpen"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
-        <button type="button" class="btn btn-default" (click)="onLoadShoppingList()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button>
+        <!-- <button type="button" class="btn btn-default" (click)="onLoadShoppingLists()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button> -->
         <button class="btn btn-danger" type="button" (click)="onClearList()"><span class="glyphicon glyphicon-erase"></span>Clear List</button>
       </div>
       <hr>
@@ -48,4 +64,5 @@
       </ul>
     </div>
   </div>
+
 </div>

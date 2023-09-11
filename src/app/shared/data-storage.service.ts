@@ -29,7 +29,7 @@ export class DataStorageService {
       )
     }
 
-    
+    // Old implementations
     // Single List
     fetchShoppingList(){
       return this.http.get<Ingredient[]>(environment.firebaseURL + 'shopping-list.json').pipe( tap(dbIngredients =>  {
@@ -52,18 +52,16 @@ export class DataStorageService {
         .subscribe(() => null, err => errorHandler("Oops there was a problem saving on the server. " + err.statusText));
     }
 
+    // New implementations
     // Multiple Lists
     fetchShoppingLists(){
-      return this.http.get<FirebaseShoppingLists>(environment.firebaseURL + 'shopping-lists.json').pipe( tap(allLists =>  {
-
-        const shoppingLists: ShoppingList[] = []
-        for(const list in allLists)
-          shoppingLists.push({ id: list, ingredients: allLists[list] });
-        console.log(shoppingLists);
-        this.slService.setShoppinglists(shoppingLists)
-    }))
+      return this.http.get<FirebaseShoppingLists>(environment.firebaseURL + 'shopping-lists.json').pipe( map(allLists =>  {
+        
+        return allLists;
+      }));
     }
 
+    // stores a single list in the lists collection
     storeShoppingLists(name: string, errorHandler: (message: string) => void){
       const listName = this.makeIntoCababCase(name);
       let allIngredients = this.slService.getIngredients();

@@ -7,14 +7,10 @@ import { ShoppingList } from '../interfaces/shoppingLists';
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
-
-  // private ingredients: Ingredient[] = [
-  //   new Ingredient('Apples', 5),
-  //   new Ingredient('Tomatoes', 10),
-  // ];
-  private shoppingLists: ShoppingList[];
   private ingredients: Ingredient[] = []; // For recipes
+  private shoppingLists: ShoppingList[] = []; // loaded in from firebase {id: string, ingredients: Ingredients[] }
   
+  // Ingredients
   setIngredients(ingredients: Ingredient[]){
     this.ingredients = ingredients;
   }
@@ -56,11 +52,14 @@ export class ShoppingListService {
     this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
   }
 
-  setShoppinglists(list: ShoppingList[]){
-    this.shoppingLists = list;
-  }
+  // // Shopping Lists
+  // setShoppinglists(list: ShoppingList[]){
+  //   this.shoppingLists = list;
+  // }
 
-  getShoppingLists(){
-    return this.shoppingLists.slice();
-  }
+  // getShoppingLists(){
+  //   return this.shoppingLists.slice();
+  // }
+
+  
 }

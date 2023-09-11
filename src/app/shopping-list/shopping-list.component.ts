@@ -18,7 +18,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   shoppingListSaverIsOpen = false;
   @ViewChild('f') listNameForm: NgForm;
 
-  ingredients: Ingredient[];
+  ingredients: Ingredient[] = [];
   isError: boolean = false;
   alert: {isCallingApi: boolean; message: string} = { isCallingApi: false, message: ''};
   private igChangeSub: Subscription;
@@ -35,10 +35,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
           // this.dataStorageService.storeShoppingList(); // store in db upon change
         }
       );
-      this.dataStorageService.fetchShoppingLists().subscribe( shoppingLists => {
-        this.shoppingLists =  this.slService.getShoppingLists();
-        console.log(this.shoppingLists);
-      });
+      this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
+          const shoppingLists: ShoppingList[] = [];
+            for(const key in dbShoppingLists)
+              shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
+    
+          console.log('allLists: ', shoppingLists);
+          this.shoppingLists =  shoppingLists;
+      }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
   }
 
   ngOnDestroy(): void {
@@ -49,19 +53,34 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.slService.startedEditing.next(index);
   }
 
-  onLoadShoppingList(){
-    this.alert = { isCallingApi: true, message: 'Appending previously saved ingredients...'};
-     this.dataStorageService.fetchShoppingLists().subscribe(ingredients => {
-      console.log(ingredients);
-      // if(ingredients)
-      //   this.ingredients = [...this.ingredients, ...ingredients];
+  // new implementation
+  onLoadList(shoppingListId: number|string){
+    this.alert = { isCallingApi: true, message: 'Loading list...'};
+    const { ingredients } = this.getShoppingListById(shoppingListId);
+    this.ingredients = ingredients;
+    this.slService.setIngredients(ingredients);
     
-      setTimeout(() => {
-        this.onSetAlertToDefault();
-      }, 2000);
-     }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText)
-      );
+    setTimeout(() => {
+      this.onSetAlertToDefault();
+    }, 2000);
   }
+
+  // old implementation
+ /*  onLoadShoppingLists(){
+    this.alert = { isCallingApi: true, message: 'Loading all lists..'};
+     this.dataStorageService.fetchShoppingLists().subscribe( dbShoppingLists => {
+      const shoppingLists: ShoppingList[] = [];
+        for(const key in dbShoppingLists)
+          shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
+
+      console.log('allLists: ', shoppingLists);
+      this.shoppingLists =  shoppingLists;
+
+      setTimeout(() => {
+        this.onSetAlertToDefault()
+      }, 2000);
+  }, error => this.handleError("Oops there was a problem fetching on the server. " + error.statusText));
+  } */
 
   onSaveShoppingList(form: NgForm){
     const name = form.value.listName;
@@ -95,6 +114,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   handleError(message?: string){
     this.isError = true;
     this.alert = { isCallingApi: true, message };
+  }
+
+  //helpers
+  private getShoppingListById(id: string|number){
+    return this.shoppingLists.find(list => list.id === id);
   }
 }
  // // == No Duplicate Functions ==
