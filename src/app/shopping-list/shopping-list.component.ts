@@ -14,6 +14,7 @@ import { ShoppingList } from '../interfaces/shoppingLists';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   shoppingLists: ShoppingList[];
+  shoppingListId: string = '';
   shoppingListName: string;
   shoppingListSaverIsOpen = false;
   @ViewChild('f') listNameForm: NgForm;
@@ -56,7 +57,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   // new implementation
   onLoadList(shoppingListId: number|string){
     this.alert = { isCallingApi: true, message: 'Loading list...'};
-    const { ingredients } = this.getShoppingListById(shoppingListId);
+    const { id, ingredients } = this.getShoppingListById(shoppingListId);
+    this.shoppingListId = id;
     this.ingredients = ingredients;
     this.slService.setIngredients(ingredients);
     

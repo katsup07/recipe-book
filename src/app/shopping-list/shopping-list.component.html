@@ -15,7 +15,7 @@
     <h2>Saved Lists</h2>
     <div style="cursor: pointer">
       <ul class="list-group">
-        <a class="list-group-item" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
+        <a class="list-group-item" [style]="shoppingListId === list.id ? 'background: dodgerblue; color: white' : ''" *ngFor="let list of shoppingLists" (click)="onLoadList(list.id)">{{ list.id }}</a>
       </ul>
     </div>
   </div>
