@@ -5,7 +5,7 @@
   class="list-group-item clearfix list-group">
   <div class="pull-left">
     <h4 id="item-name" class="list-group-item-heading"><span class="glyphicon glyphicon-cutlery icon"></span> {{ recipe.name }}</h4>
-    <p class="list-group-item-text">{{ recipe.description }}</p>
+    <p class="list-group-item-text">{{ recipe.description.substring(0,70) }}...</p>
   </div>
   <span class="pull-right">
         <img
