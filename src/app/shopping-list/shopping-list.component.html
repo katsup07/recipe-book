@@ -35,7 +35,7 @@
       >
       </app-shopping-lists>
 
-      <div class="shopping-list-saver" *ngIf="shoppingListSaverIsOpen">
+      <div class="shopping-list-saver" *ngIf="shoppingListNameEditorIsOpen">
         <form #f="ngForm" (ngSubmit)="onSaveShoppingList(f)">
           <input
             class="form-control"
@@ -48,7 +48,7 @@
             [(ngModel)]="shoppingListId"
           />
           <button class="btn btn-default shopping-list-name-save-confirm" type="submit" [disabled]="!f.valid"><span class="glyphicon glyphicon-cloud-upload"></span>Save List As</button>
-          <button class="btn btn-danger shopping-list-name-save-cancel" type="button" (click)="toggleShoppingListSaverVisibility()">Cancel</button>
+          <button class="btn btn-danger shopping-list-name-save-cancel" type="button" (click)="onCancelNameEdit()">Cancel</button>
         </form>
       </div>
 
@@ -56,22 +56,22 @@
         <button
           type="button"
           class="btn btn-default"
-          (click)="toggleShoppingListSaverVisibility()"
-          [disabled]="shoppingListSaverIsOpen"
+          (click)="toggleShoppingListNameEditorVisibility()"
+          [disabled]="shoppingListNameEditorIsOpen"
         >
           <span class="glyphicon glyphicon-pencil"></span> Edit List Name
         </button>
-        <!-- <button type="button" class="btn btn-default" (click)="onLoadShoppingLists()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button> -->
+        <button type="button" class="btn btn-default" (click)="onSaveShoppingList()" [disabled]="!shoppingListId || shoppingListNameEditorIsOpen"><span class="glyphicon glyphicon-cloud-upload"></span>Save List</button>
         <button class="btn btn-danger" type="button" (click)="onClearList()">
           <span class="glyphicon glyphicon-erase"></span>Clear List
         </button>
       </div>
       <hr />
-      <app-shopping-edit [shoppingListSaverIsOpen]=" shoppingListSaverIsOpen"></app-shopping-edit>
+      <app-shopping-edit [shoppingListNameEditorIsOpen]=" shoppingListNameEditorIsOpen"></app-shopping-edit>
       <hr />
       <p>
         <span class="instructions"
-          >Click an item on the shopping list to edit or delete it.</span
+          >Click an item on the shopping list to edit or delete it. Save list if you wish to store it.</span
         >
       </p>
     </div>

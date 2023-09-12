@@ -16,7 +16,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   @ViewChild('f') listNameForm: NgForm;
   shoppingLists: ShoppingList[]; // # Todo make this into separate component
   shoppingListId: string = '';
-  shoppingListSaverIsOpen = false;
+  shoppingListNameEditorIsOpen = false;
   ingredients: Ingredient[] = [];
   isError: boolean = false;
   alert: { isCallingApi: boolean; message: string } = {
@@ -63,25 +63,35 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.slService.setIngredients(ingredients);
   }
 
-  onSaveShoppingList(form: NgForm) {
-    const name = form.value.listName;
+  onSaveShoppingList(form?: NgForm) {
     this.alert = { isCallingApi: true, message: 'Saving shopping list...' };
+
+    if(!form?.value?.listName){// Save without editing name
+      this.manageListsService.storeShoppingLists(this.shoppingListId, this.handleError);
+    } else{ // Save with editing name
+    const name = form.value.listName;
     this.manageListsService.storeShoppingLists(name, this.handleError);
+    }
     
     setTimeout(() => {
       this.onSetAlertToDefault();
-      this.shoppingListSaverIsOpen = false;
+      this.shoppingListNameEditorIsOpen = false;
     }, 2000);
   }
 
-  toggleShoppingListSaverVisibility() {
-    console.log('Toggling visibility...');
-    this.shoppingListSaverIsOpen = !this.shoppingListSaverIsOpen;
+  onCancelNameEdit(){
+    this.toggleShoppingListNameEditorVisibility();
+    this.shoppingListId = '';
+  }
+
+  toggleShoppingListNameEditorVisibility() {
+    this.shoppingListNameEditorIsOpen = !this.shoppingListNameEditorIsOpen;
   }
 
   onClearList() {
     if (!confirm('Are you sure you want to clear the shopping list?')) return;
 
+    this.shoppingListId = '';
     this.slService.clearIngredients();
   }
 
