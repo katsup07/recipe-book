@@ -35,6 +35,7 @@ Select previously saved shopping lists and edit them.
 ![FirstApp (10)](https://github.com/katsup07/recipe-book/assets/90941888/7a2f8c0e-8f3a-4c9c-b423-f1f2c403aab2)
 <br>
 <br>
+## Angular CLI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
 ## Development server
