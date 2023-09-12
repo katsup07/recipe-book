@@ -1,10 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Pipe } from '@angular/core';
 import { ShoppingList } from '../interfaces/shoppingLists';
+import { ManageListsService } from './manage-lists.service';
+import { ShoppingListComponent } from './../shopping-list/shopping-list.component';
 
 @Component({
   selector: 'app-shopping-lists',
   templateUrl: './shopping-lists.component.html',
-  styleUrls: ['./shopping-lists.component.css']
+  styleUrls: ['./shopping-lists.component.css'],
+  /* changeDetection: ChangeDetectionStrategy.OnPush, */
 })
 export class ShoppingListsComponent implements OnInit {
   @Input() onLoadList: (id: string) => void;
@@ -13,9 +16,10 @@ export class ShoppingListsComponent implements OnInit {
   @Input() shoppingListId: string;
   showDropdown: boolean;
 
-  constructor() { }
+  constructor(private manageListsService: ManageListsService) { }
 
   ngOnInit(): void {
+  
   }
 
   toggleListDropdown() {

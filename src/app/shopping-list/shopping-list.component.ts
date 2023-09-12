@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
@@ -37,6 +37,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         this.ingredients = ingredients;
       }
     );
+    this.manageListsService.shoppingListsChanged.subscribe(lists => {
+      this.shoppingLists = lists;
+      console.log('current shopping list: ', this.shoppingLists);
+    })
     this.fetchShoppingList();
   }
 

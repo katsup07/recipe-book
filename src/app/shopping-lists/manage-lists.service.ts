@@ -2,15 +2,18 @@ import { Injectable } from "@angular/core";
 import { FirebaseShoppingLists, ShoppingList } from "../interfaces/shoppingLists";
 import { DataStorageService } from "../shared/data-storage.service";
 import { map } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class ManageListsService{
    shoppingLists: ShoppingList[] = [];
+   shoppingListsChanged = new Subject<ShoppingList[]>();
 
    constructor(private dataStorageService: DataStorageService){}
 
    setShoppinglists(list: ShoppingList[]){
     this.shoppingLists = list;
+    this.notifyShoppingListsChanged();
   }
 
   getShoppingLists(){
@@ -18,26 +21,36 @@ export class ManageListsService{
   }
 
   storeShoppingLists(name: string, handleError: (message: string) => void){
-    this.dataStorageService.storeShoppingLists(name, handleError);
+    this.dataStorageService.storeShoppingLists(name)
+      .subscribe(() =>  this.notifyShoppingListsChanged(), 
+        (err) => handleError( 'Oops there was a problem saving on the server. ' + err.statusText
+    ));
   }
 
   deleteShoppingList(id: string|number, handleError: (message: string) => void ){
-    this.dataStorageService.deleteShoppingList(id, handleError);
+    this.dataStorageService.deleteShoppingList(id).subscribe(() => this.notifyShoppingListsChanged(),
+    (err) =>
+      handleError(
+        'Oops there was a problem saving on the server. ' + err.statusText
+      ));
+    
   }
 
   fetchShoppingLists(){
     return this.dataStorageService.fetchShoppingLists()
             .pipe( map(lists => {
               this.shoppingLists = this.convertDbShoppingListToShoppingList(lists);
+              this.notifyShoppingListsChanged();
                 return this.shoppingLists.slice();
             }));
-  }
+          }
 
   getShoppingListById(id: string | number) {
-    console.log(this.shoppingLists);
-    const result = this.shoppingLists.find((list) => list.id === id);
-    console.log('getShoppingListById: ', result);
-    return result;
+    return this.shoppingLists.find((list) => list.id === id);
+  }
+
+  notifyShoppingListsChanged(){
+    this.shoppingListsChanged.next(this.shoppingLists.slice());
   }
 
   // helpers

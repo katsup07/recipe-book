@@ -44,9 +44,10 @@
             placeholder="Enter shopping list name"
             required
             minlength="3"
-            ngModel
+            #shoppingListName
+            [(ngModel)]="shoppingListId"
           />
-          <button class="btn btn-default shopping-list-name-save-confirm" type="submit" [disabled]="!f.valid"><span class="glyphicon glyphicon-cloud-upload"></span>Save</button>
+          <button class="btn btn-default shopping-list-name-save-confirm" type="submit" [disabled]="!f.valid"><span class="glyphicon glyphicon-cloud-upload"></span>Save List As</button>
           <button class="btn btn-danger shopping-list-name-save-cancel" type="button" (click)="toggleShoppingListSaverVisibility()">Cancel</button>
         </form>
       </div>
@@ -58,7 +59,7 @@
           (click)="toggleShoppingListSaverVisibility()"
           [disabled]="shoppingListSaverIsOpen"
         >
-          <span class="glyphicon glyphicon-pencil"></span> Write List Name
+          <span class="glyphicon glyphicon-pencil"></span> Edit List Name
         </button>
         <!-- <button type="button" class="btn btn-default" (click)="onLoadShoppingLists()"><span class="glyphicon glyphicon-cloud-download"></span>Fetch List</button> -->
         <button class="btn btn-danger" type="button" (click)="onClearList()">

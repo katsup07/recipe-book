@@ -56,37 +56,19 @@ export class DataStorageService {
   }
 
   // stores a single list in the lists collection
-  storeShoppingLists(name: string, errorHandler: (message: string) => void) {
+  storeShoppingLists(name: string) {
     const listName = this.makeIntoCababCase(name);
     let allIngredients = this.slService.getIngredients();
     console.log('allIngredients: ', allIngredients);
-    this.http
+    return this.http
       .put(
         environment.firebaseURL + 'shopping-lists/' + listName + '.json',
         allIngredients
-      )
-      .subscribe(
-        () => null,
-        (err) =>
-          errorHandler(
-            'Oops there was a problem saving on the server. ' + err.statusText
-          )
       );
   }
 
-  deleteShoppingList(
-    id: string | number,
-    errorHandler: (message: string) => void
-  ) {
-    this.http
-      .delete(environment.firebaseURL + 'shopping-lists/' + id + '.json')
-      .subscribe(
-        (res) => console.log(res),
-        (err) =>
-          errorHandler(
-            'Oops there was a problem saving on the server. ' + err.statusText
-          )
-      );
+  deleteShoppingList(id: string | number) {
+    return this.http.delete(environment.firebaseURL + 'shopping-lists/' + id + '.json');
   }
 
   // Helpers
