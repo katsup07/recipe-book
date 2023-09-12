@@ -11,8 +11,8 @@ export class ManageListsService{
 
    constructor(private dataStorageService: DataStorageService){}
 
-   setShoppinglists(list: ShoppingList[]){
-    this.shoppingLists = list;
+   setShoppinglists(lists: ShoppingList[]){
+    this.shoppingLists = lists;
     this.notifyShoppingListsChanged();
   }
 
