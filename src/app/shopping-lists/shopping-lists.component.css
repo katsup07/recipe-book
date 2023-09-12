@@ -1,0 +1,112 @@
+.form-and-shopping-list{
+  margin: 2rem auto;
+  display: flex;
+}
+
+.button-actions{
+  display: flex;
+  gap: 1rem;
+}
+
+.alert-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+}
+.alert{
+  position: absolute;
+  box-shadow: 3px 4px 8px 4px rgb(202, 202, 202);
+  min-width: 30vh;
+  text-align: center;
+  border: 1px solid rgb(208, 208, 208);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.main-heading-1{
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: left;
+  margin-left: 1.4rem;
+}
+
+.main-heading-2{
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  margin-left: 1.4rem;
+}
+
+.empty-list-message{
+  font-style: italic;
+  font-size: 0.7rem;
+  color: dodgerblue;
+  text-align: center;
+  border: 1px dashed dodgerblue;
+}
+
+.close-alert{
+  margin-left: 1rem;
+}
+
+.heading-icon{
+  color: grey;
+  font-size: 2.45rem;
+}
+
+.sub-icon{
+  color: green;
+}
+
+.lists-icon, .save-button-icon{
+  margin: 0.2rem;
+}
+
+.instructions{
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.dropdown-toggle{
+  padding: 0.2rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.shopping-list-dropdown{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 0.5rem;
+}
+
+.shopping-list-dropdown li{
+  font-size: 1.15rem;
+}
+
+.shopping-list-dropdown li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shopping-list-name-save-confirm{
+  margin: 0.3rem 0 0.5rem 0;
+}
+
+.shopping-list-name-save-cancel{
+  margin: 0.3rem 0 0.5rem 0.5rem;
+}
+
+.delete-list-btn{
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .row{
+    display: block;
+  }
+}

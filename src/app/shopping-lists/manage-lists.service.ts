@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { ShoppingList } from "../interfaces/shoppingLists";
+import { FirebaseShoppingLists, ShoppingList } from "../interfaces/shoppingLists";
 import { DataStorageService } from "../shared/data-storage.service";
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class ManageListsService{
@@ -25,7 +26,29 @@ export class ManageListsService{
   }
 
   fetchShoppingLists(){
-    return this.dataStorageService.fetchShoppingLists();
+    return this.dataStorageService.fetchShoppingLists()
+            .pipe( map(lists => {
+              this.shoppingLists = this.convertDbShoppingListToShoppingList(lists);
+                return this.shoppingLists.slice();
+            }));
   }
 
+  getShoppingListById(id: string | number) {
+    console.log(this.shoppingLists);
+    const result = this.shoppingLists.find((list) => list.id === id);
+    console.log('getShoppingListById: ', result);
+    return result;
+  }
+
+  // helpers
+  private convertDbShoppingListToShoppingList(
+    dbShoppingLists: FirebaseShoppingLists
+  ) {
+    const shoppingLists: ShoppingList[] = [];
+    for (const key in dbShoppingLists)
+      shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
+
+    console.log('allLists: ', shoppingLists);
+    return shoppingLists;
+  }
 }

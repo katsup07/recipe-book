@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShoppingList } from '../interfaces/shoppingLists';
 
 @Component({
   selector: 'app-shopping-lists',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-lists.component.css']
 })
 export class ShoppingListsComponent implements OnInit {
+  @Input() onLoadList: (id: string) => void;
+  @Input() onDeleteList: (id: string) => void;
+  @Input() shoppingLists: ShoppingList[];
+  showDropdown: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  toggleListDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
 
 }

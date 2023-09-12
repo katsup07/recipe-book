@@ -1,2 +1,33 @@
-<p>shopping-lists works!</p>
-<!-- Move shopping lists viewer and possibly saver over here -->
+<div class="shopping-lists-viewer">
+  <div class="dropdown">
+    <button
+      class="btn btn-default dropdown-toggle"
+      type="button"
+      (click)="toggleListDropdown()"
+    >
+      <span class="glyphicon glyphicon-folder-open lists-icon"></span>
+      Lists <span class="caret"></span>
+    </button>
+    <ul class="shopping-list-dropdown" *ngIf="showDropdown">
+      <li style="cursor: pointer">
+        <a
+          class="list-group-item"
+          [style]="
+            shoppingListId === list.id
+              ? 'background: dodgerblue; color: white; font-weight: bold'
+              : ''
+          "
+          *ngFor="let list of shoppingLists"
+          (click)="onLoadList(list.id)"
+          >{{ list.id
+          }}<button
+            type="button"
+            class="btn bold btn-danger delete-list-btn"
+            (click)="onDeleteList(list.id)"
+          >
+            <span class="glyphicon glyphicon-remove"></span></button
+        ></a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -27,39 +27,12 @@
         <span class="glyphicon glyphicon-cog heading-icon"></span> Manage Lists
       </h1>
 
-      <div class="shopping-lists-viewer">
-        <div class="dropdown">
-          <button
-            class="btn btn-default dropdown-toggle"
-            type="button"
-            (click)="toggleListDropdown()"
-          >
-            <span class="glyphicon glyphicon-folder-open lists-icon"></span>
-            Lists <span class="caret"></span>
-          </button>
-          <ul class="shopping-list-dropdown" *ngIf="showDropdown">
-            <li style="cursor: pointer">
-              <a
-                class="list-group-item"
-                [style]="
-                  shoppingListId === list.id
-                    ? 'background: dodgerblue; color: white; font-weight: bold'
-                    : ''
-                "
-                *ngFor="let list of shoppingLists"
-                (click)="onLoadList(list.id)"
-                >{{ list.id
-                }}<button
-                  type="button"
-                  class="btn bold btn-danger delete-list-btn"
-                  (click)="onDeleteList(list.id)"
-                >
-                  <span class="glyphicon glyphicon-remove"></span></button
-              ></a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <app-shopping-lists 
+      [onLoadList]="onLoadList" 
+      [onDeleteList]="onDeleteList" 
+      [shoppingLists]="shoppingLists"
+      >
+      </app-shopping-lists>
 
       <div class="shopping-list-saver" *ngIf="shoppingListSaverIsOpen">
         <form #f="ngForm" (ngSubmit)="onSaveShoppingList(f)">
