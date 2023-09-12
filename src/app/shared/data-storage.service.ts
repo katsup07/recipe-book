@@ -57,7 +57,7 @@ export class DataStorageService {
 
   // stores a single list in the lists collection
   storeShoppingLists(name: string) {
-    const listName = this.makeIntoCababCase(name);
+    const listName = this.makeIntoKebabCase(name);
     let allIngredients = this.slService.getIngredients();
     console.log('allIngredients: ', allIngredients);
     return this.http
@@ -72,7 +72,7 @@ export class DataStorageService {
   }
 
   // Helpers
-  makeIntoCababCase(s: string) {
+  makeIntoKebabCase(s: string) {
     return s.split(' ').join('-');
   }
 

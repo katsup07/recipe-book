@@ -11,6 +11,7 @@ export class ManageListsService{
 
    constructor(private dataStorageService: DataStorageService){}
 
+    // local
    setShoppinglists(lists: ShoppingList[]){
     this.shoppingLists = lists;
     this.notifyShoppingListsChanged();
@@ -20,15 +21,23 @@ export class ManageListsService{
     return this.shoppingLists.slice();
   }
 
+  // db
   storeShoppingLists(name: string, handleError: (message: string) => void){
     this.dataStorageService.storeShoppingLists(name)
-      .subscribe(() =>  this.notifyShoppingListsChanged(), 
+      .subscribe((res) => {
+        this.syncWithDbLists();
+        this.notifyShoppingListsChanged();
+        console.log('res: ', res);
+      }, 
         (err) => handleError( 'Oops there was a problem saving on the server. ' + err.statusText
     ));
   }
 
   deleteShoppingList(id: string|number, handleError: (message: string) => void ){
-    this.dataStorageService.deleteShoppingList(id).subscribe(() => this.notifyShoppingListsChanged(),
+    this.dataStorageService.deleteShoppingList(id).subscribe(() => {
+      this.syncWithDbLists();
+      this.notifyShoppingListsChanged()
+    },
     (err) =>
       handleError(
         'Oops there was a problem saving on the server. ' + err.statusText
@@ -49,6 +58,11 @@ export class ManageListsService{
     return this.shoppingLists.find((list) => list.id === id);
   }
 
+  syncWithDbLists(){
+    this.dataStorageService.fetchShoppingLists()
+      .subscribe(lists => 
+        this.setShoppinglists(this.convertDbShoppingListToShoppingList(lists)))
+  }
   notifyShoppingListsChanged(){
     this.shoppingListsChanged.next(this.shoppingLists.slice());
   }
