@@ -1,4 +1,4 @@
-# Recipe Book
+![FirstApp (16)](https://github.com/katsup07/recipe-book/assets/90941888/e98b542f-5f8d-4a90-8fcf-c8458ff6e072)# Recipe Book
 
  Create your own recipe collection, edit exiting recipes, add new recipes, delete recipes, add ingredients, send ingredients to a shopping list. Save and fetch an existing shopping list.
  The site is live [here](https://recipes-ten-vert.vercel.app/).
@@ -6,25 +6,36 @@
  # Features
  
  Manage existing recipes.
-![FirstApp](https://github.com/katsup07/recipe-book/assets/90941888/ce34c165-ed8c-40c9-992e-3e2b991e2093)
+![FirstApp (8)](https://github.com/katsup07/recipe-book/assets/90941888/a94c956e-456a-4b49-9c66-a10c95b95c4b)
 <br>
 <br>
 Update and save recipes.
-![FirstApp (1)](https://github.com/katsup07/recipe-book/assets/90941888/688c7ce2-3e35-4e77-832b-8cfc62c27650)
+![FirstApp (12)](https://github.com/katsup07/recipe-book/assets/90941888/370412a6-09fb-4657-9cc3-f0c30ae35f93)
 <br>
 <br>
-Add and edit ingredients in recipes.
-![FirstApp (2)](https://github.com/katsup07/recipe-book/assets/90941888/ad17fdc7-0e2e-4780-b254-c1973a6e78e9)
+Add and edit 
+ingredients in recipes.
+!
+![FirstApp (14)](https://github.com/katsup07/recipe-book/assets/90941888/452a2981-c889-4446-98d5-c5e9f162e485)
 <br>
 <br>
 Send ingredients to a shopping list.
-![FirstApp (3)](https://github.com/katsup07/recipe-book/assets/90941888/1a29e29c-52e9-405c-852f-9e26f9348c27)
-![FirstApp (4)](https://github.com/katsup07/recipe-book/assets/90941888/2bf52c1b-6e5c-4472-8186-9920c6167279)
+![FirstApp (8)](https://github.com/katsup07/recipe-book/assets/90941888/aee1dd67-9ad5-42a4-bac4-e2dbb43c87ae)
+![FirstApp (15)](https://github.com/katsup07/recipe-book/assets/90941888/5c5a4f37-2a49-4361-be2e-d3bbb10645bb)
 <br>
 <br>
-Manage shopping list - add ingredients, update ingredients, delete ingredients, save shopping lists, and fetch an existing shopping list.
-![FirstApp (5)](https://github.com/katsup07/recipe-book/assets/90941888/04de6f84-63de-4c06-a4a6-172539115bef)
-
+Manage shopping lists - add ingredients, update ingredients, delete ingredients.
+![FirstApp (16)](https://github.com/katsup07/recipe-book/assets/90941888/21f402e8-bd7f-4e61-9e37-3ed92bef2f75)
+<br>
+<br>
+Select previously saved shopping lists and edit them.
+![FirstApp (9)](https://github.com/katsup07/recipe-book/assets/90941888/2b86ccd1-930a-4e43-9f16-dd66f4682a27)
+<br>
+<br>
+ Create new lists and save for future reference.
+![FirstApp (10)](https://github.com/katsup07/recipe-book/assets/90941888/7a2f8c0e-8f3a-4c9c-b423-f1f2c403aab2)
+<br>
+<br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
 ## Development server
