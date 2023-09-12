@@ -10,6 +10,7 @@ export class ShoppingListsComponent implements OnInit {
   @Input() onLoadList: (id: string) => void;
   @Input() onDeleteList: (id: string) => void;
   @Input() shoppingLists: ShoppingList[];
+  @Input() shoppingListId: string;
   showDropdown: boolean;
 
   constructor() { }
