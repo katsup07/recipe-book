@@ -26,7 +26,7 @@ export class ManageListsService{
     this.dataStorageService.storeShoppingLists(name)
       .subscribe((res) => {
         this.syncWithDbLists();
-        this.notifyShoppingListsChanged();
+        // this.notifyShoppingListsChanged(); // Called in syncWithDbLists()
         console.log('res: ', res);
       }, 
         (err) => handleError( 'Oops there was a problem saving on the server. ' + err.statusText
@@ -36,7 +36,7 @@ export class ManageListsService{
   deleteShoppingList(id: string|number, handleError: (message: string) => void ){
     this.dataStorageService.deleteShoppingList(id).subscribe(() => {
       this.syncWithDbLists();
-      this.notifyShoppingListsChanged()
+      // this.notifyShoppingListsChanged() // Called in syncWithDbLists()
     },
     (err) =>
       handleError(
@@ -58,16 +58,18 @@ export class ManageListsService{
     return this.shoppingLists.find((list) => list.id === id);
   }
 
-  syncWithDbLists(){
+  private syncWithDbLists(){
     this.dataStorageService.fetchShoppingLists()
       .subscribe(lists => 
         this.setShoppinglists(this.convertDbShoppingListToShoppingList(lists)))
   }
-  notifyShoppingListsChanged(){
+
+  private notifyShoppingListsChanged(){
     this.shoppingListsChanged.next(this.shoppingLists.slice());
   }
 
-  // helpers
+  // == helpers ==
+  // The shape of lists in db and locally are slightly different
   private convertDbShoppingListToShoppingList(
     dbShoppingLists: FirebaseShoppingLists
   ) {
@@ -75,7 +77,6 @@ export class ManageListsService{
     for (const key in dbShoppingLists)
       shoppingLists.push({ id: key, ingredients: dbShoppingLists[key] });
 
-    console.log('allLists: ', shoppingLists);
     return shoppingLists;
   }
 }
