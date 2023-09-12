@@ -15,7 +15,6 @@ Update and save recipes.
 <br>
 Add and edit 
 ingredients in recipes.
-!
 ![FirstApp (14)](https://github.com/katsup07/recipe-book/assets/90941888/452a2981-c889-4446-98d5-c5e9f162e485)
 <br>
 <br>
