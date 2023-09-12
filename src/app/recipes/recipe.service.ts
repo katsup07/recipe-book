@@ -36,17 +36,17 @@ export class RecipeService {
     return this.recipes[index];
   }
 
-  setRecipes(newRecipes: Recipe[]){
+  setRecipes(newRecipes: Recipe[]) {
     this.recipes = newRecipes;
     this.notifyRecipesChanged();
   }
 
-  addRecipe(recipe: Recipe){
+  addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.notifyRecipesChanged();
   }
 
-  updateRecipe(index: number, newRecipe: Recipe){
+  updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
     this.notifyRecipesChanged();
   }
@@ -55,22 +55,19 @@ export class RecipeService {
     this.slService.addIngredients(ingredients);
   }
 
-  deleteRecipe(index: number){
-    this.recipes.splice(index,1);
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
     this.notifyRecipesChanged();
   }
 
-  deleteRecipeIngredient(recipeIndex: number, ingredientIndex: number){
+  deleteRecipeIngredient(recipeIndex: number, ingredientIndex: number) {
     const recipe = this.getRecipe(recipeIndex);
-    recipe.ingredients.splice(ingredientIndex,1);
+    recipe.ingredients.splice(ingredientIndex, 1);
     this.notifyRecipesChanged();
   }
 
   //helper
-  notifyRecipesChanged(){
+  notifyRecipesChanged() {
     this.recipesChanged.next(this.recipes.slice());
   }
 }
-
-
- 
