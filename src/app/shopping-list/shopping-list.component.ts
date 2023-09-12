@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
-import { DataStorageService } from './../shared/data-storage.service';
 import { NgForm } from '@angular/forms';
 import {ShoppingList } from '../interfaces/shoppingLists';
 import { ManageListsService } from '../shopping-lists/manage-lists.service';
