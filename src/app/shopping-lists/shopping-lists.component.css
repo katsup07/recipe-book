@@ -1,71 +1,5 @@
-.form-and-shopping-list{
-  margin: 2rem auto;
-  display: flex;
-}
-
-.button-actions{
-  display: flex;
-  gap: 1rem;
-}
-
-.alert-container{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  z-index: 100;
-}
-.alert{
-  position: absolute;
-  box-shadow: 3px 4px 8px 4px rgb(202, 202, 202);
-  min-width: 30vh;
-  text-align: center;
-  border: 1px solid rgb(208, 208, 208);
-  font-weight: 500;
-  font-style: italic;
-}
-
-.main-heading-1{
-  font-weight: bold;
-  font-size: 3rem;
-  text-align: left;
-  margin-left: 1.4rem;
-}
-
-.main-heading-2{
-  font-weight: bold;
-  font-size: 3rem;
-  text-align: center;
-  margin-left: 1.4rem;
-}
-
-.empty-list-message{
-  font-style: italic;
-  font-size: 0.7rem;
-  color: dodgerblue;
-  text-align: center;
-  border: 1px dashed dodgerblue;
-}
-
-.close-alert{
-  margin-left: 1rem;
-}
-
-.heading-icon{
-  color: grey;
-  font-size: 2.45rem;
-}
-
-.sub-icon{
-  color: green;
-}
-
-.lists-icon, .save-button-icon{
+.lists-icon{
   margin: 0.2rem;
-}
-
-.instructions{
-  font-style: italic;
-  font-size: 0.8rem;
 }
 
 .dropdown-toggle{
@@ -103,10 +37,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@media only screen and (max-width: 800px) {
-  .row{
-    display: block;
-  }
 }
