@@ -1,6 +1,6 @@
 ![FirstApp (16)](https://github.com/katsup07/recipe-book/assets/90941888/e98b542f-5f8d-4a90-8fcf-c8458ff6e072)# Recipe Book
 
- Create your own recipe collection, edit exiting recipes, add new recipes, delete recipes, add ingredients, send ingredients to a shopping list. Save and fetch an existing shopping list.
+ Create your own recipe collection, edit exiting recipes, add new recipes, delete recipes, add ingredients, send ingredients to a shopping list. Manage shopping lists - add ingredients, update ingredients, delete ingredients, create new lists, and edit previously saved lists.
  The site is live [here](https://recipes-ten-vert.vercel.app/).
 
  # Features
