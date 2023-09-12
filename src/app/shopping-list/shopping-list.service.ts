@@ -8,7 +8,6 @@ export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
   private ingredients: Ingredient[] = []; // For recipes
-  private shoppingLists: ShoppingList[] = []; // loaded in from firebase {id: string, ingredients: Ingredients[] }
   
   // Ingredients
   setIngredients(ingredients: Ingredient[]){
